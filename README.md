@@ -63,8 +63,8 @@ This is a Number Classification API that takes a number as input and returns int
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
-   cd <project_directory>
+   git clone <https://github.com/whiteSama001/Number-Classifications-API>
+   cd <Number-Classifications-API>
    ```
 
 2. Install dependencies (if any). For this C# project, you might use .NET Core:
