@@ -85,12 +85,12 @@ This is a Number Classification API that takes a number as input and returns int
   
 Example request:
 ```bash
-curl "http://<your-domain.com>/api/classify-number?number=371"
+curl "https://classication-api-e8habme6hnbmaug9.centralus-01.azurewebsites.net/api/classify-number?number=371"
 ```
 
 ## Deployment
 
-The API has been deployed and is publicly accessible via [this link](<your-deployment-url>).
+The API has been deployed and is publicly accessible via [this link](https://classication-api-e8habme6hnbmaug9.centralus-01.azurewebsites.net).
 
 ## Testing
 
@@ -103,7 +103,7 @@ The API has been deployed and is publicly accessible via [this link](<your-deplo
 ## Version Control
 
 The project is hosted on GitHub:
-- Repository: [<your-github-repository-link>](<repository_url>)
+- Repository: [<your-github-repository-link>](https://github.com/whiteSama001/Number-Classifications-API)
 
 ## Notes
 
