@@ -27,16 +27,24 @@ namespace NumberClassificationAPI.Controllers
                     error = true
                 });
             }
-       
+
+            // Perform synchronous computations (fast)
+            bool isPrime = _numberService.IsPrime(num);
+            bool isPerfect = _numberService.IsPerfect(num);
+            int digitSum = _numberService.GetDigitSum(num);
+            var properties = _numberService.GetProperties(num);
+
+            // Fetch fun fact asynchronously (with timeout)
+            string funFact = await _numberService.GetFunFact(num);
 
             var response = new NumberClassificationResponse
             {
                 Number = num,
-                IsPrime = _numberService.IsPrime(num),
-                IsPerfect = _numberService.IsPerfect(num),
-                Properties = _numberService.GetProperties(num),
-                DigitSum = _numberService.GetDigitSum(num),
-                FunFact = await _numberService.GetFunFact(num)
+                IsPrime = isPrime,
+                IsPerfect = isPerfect,
+                Properties = properties,
+                DigitSum = digitSum,
+                FunFact = funFact
             };
 
             return Ok(response);

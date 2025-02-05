@@ -12,14 +12,18 @@ namespace Number_Classification_API.Services
         }
 
         public bool IsPrime(int num)
-        {
-            if (num < 2) return false;
-            for (int i = 2; i * i <= num; i++)
-            {
-                if (num % i == 0) return false;
-            }
-            return true;
-        }
+{
+    if (num < 2) return false;
+    if (num % 2 == 0 && num != 2) return false;
+
+    for (int i = 3; i <= Math.Sqrt(num); i += 2) 
+    {
+        if (num % i == 0)
+            return false;
+    }
+    return true;
+}
+
 
         public bool IsPerfect(int num)
         {
@@ -50,8 +54,8 @@ namespace Number_Classification_API.Services
         public int GetDigitSum(int number)
         {
             int sum = 0;
-            int sign = number < 0 ? -1 : 1; 
-            number = Math.Abs(number); 
+            int sign = number < 0 ? -1 : 1;
+            number = Math.Abs(number);
 
             while (number > 0)
             {
@@ -73,17 +77,21 @@ namespace Number_Classification_API.Services
 
         public async Task<string> GetFunFact(int num)
         {
+            using HttpClient client = new();
+            client.Timeout = TimeSpan.FromMilliseconds(300); // Set timeout to avoid long delays
+
             try
             {
-                var response = await _httpClient.GetStringAsync($"http://numbersapi.com/{num}/math?json");
-                dynamic funFact = JsonConvert.DeserializeObject(response);
-                return funFact?.text ?? "No fun fact found.";
+                string url = $"http://numbersapi.com/{num}?json";
+                var response = await client.GetStringAsync(url);
+                return response;
             }
             catch
             {
-                return "Fun fact API unavailable.";
+                return "Fun fact not available due to timeout.";
             }
         }
+
     }
 }
 
