@@ -47,16 +47,29 @@ namespace Number_Classification_API.Services
             return sum == num;
         }
 
-        public int GetDigitSum(int num)
+        //public int GetDigitSum(int num)
+        //{
+        //    int sum = 0;
+        //    while (num > 0)
+        //    {
+        //        sum += num % 10;
+        //        num /= 10;
+        //    }
+        //    return sum;
+        //}
+        public int GetDigitSum(int number)
         {
             int sum = 0;
-            while (num > 0)
+            number = Math.Abs(number); 
+
+            while (number > 0)
             {
-                sum += num % 10;
-                num /= 10;
+                sum += number % 10; 
+                number /= 10; 
             }
             return sum;
         }
+
 
         public List<string> GetProperties(int num)
         {
