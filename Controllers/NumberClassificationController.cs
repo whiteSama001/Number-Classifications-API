@@ -19,18 +19,15 @@ namespace NumberClassificationAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] string number)
         {
-            if (string.IsNullOrWhiteSpace(number))
+            if (string.IsNullOrWhiteSpace(number) || !int.TryParse(number, out int num))
             {
                 return BadRequest(new
                 {
-                    number = "null",
+                    number = "alphabet",
                     error = true
                 });
             }
-            if (!int.TryParse(number, out int num))
-            {
-                return BadRequest(new { number, error = true });
-            }
+       
 
             var response = new NumberClassificationResponse
             {
